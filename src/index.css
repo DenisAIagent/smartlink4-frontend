@@ -1,0 +1,76 @@
+@import url(\'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap\');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-mdmc-black text-mdmc-white font-sans;
+  }
+  
+  * {
+    @apply border-mdmc-gray-700;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-mdmc-gray-800 hover:bg-mdmc-gray-700 text-mdmc-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 border border-mdmc-gray-600;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-mdmc-gray-900 border border-mdmc-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-mdmc-white placeholder-mdmc-gray-400;
+  }
+  
+  .card {
+    @apply bg-mdmc-gray-900 rounded-xl shadow-xl border border-mdmc-gray-800 p-6;
+  }
+  
+  .platform-button {
+    @apply flex items-center justify-center gap-3 w-full py-4 px-6 rounded-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg transform;
+  }
+  
+  .mdmc-gradient {
+    @apply bg-gradient-to-r from-mdmc-black via-mdmc-gray-900 to-mdmc-black;
+  }
+  
+  .mdmc-text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary-400 bg-clip-text text-transparent;
+  }
+  
+  .mdmc-border-gradient {
+    @apply border border-transparent bg-gradient-to-r from-primary to-primary-400 bg-clip-border;
+  }
+}
+
+/* Animations personnalisées */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.6); }
+}
+
+.glow-red {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-mdmc-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-mdmc-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+}
+

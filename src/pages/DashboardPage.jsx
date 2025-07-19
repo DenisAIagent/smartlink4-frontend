@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { getAllLinks } from '../services/api';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { useNavigate, Link } from 'react-router-dom';
+import { linksApi } from '../api';
+import { useAuth } from '../contexts/AuthContext';
 
 const DashboardPage = () => {
   const [links, setLinks] = useState([]);
@@ -26,10 +25,10 @@ const DashboardPage = () => {
 
   const loadLinks = async () => {
     try {
-      const data = await getAllLinks();
-      setLinks(data);
+      const response = await linksApi.getAll();
+      setLinks(response.data);
     } catch (err) {
-      setError(err.error || 'Erreur lors du chargement des liens');
+      setError(err.response?.data?.error || 'Erreur lors du chargement des liens');
     } finally {
       setIsLoading(false);
     }

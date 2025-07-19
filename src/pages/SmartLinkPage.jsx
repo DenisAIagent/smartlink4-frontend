@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
-import { getLinkBySlug } from '../services/api';
+import { linksApi } from '../api';
 import { initializeAnalytics, trackPageView, trackPlatformClick } from '../utils/analytics';
 import PlatformButton from '../components/PlatformButton';
 import ConsentBanner from '../components/ConsentBanner';
-import LoadingSpinner from '../components/LoadingSpinner';
 
 const SmartLinkPage = () => {
   const { slug } = useParams();
@@ -22,7 +20,8 @@ const SmartLinkPage = () => {
 
   const loadLink = async () => {
     try {
-      const data = await getLinkBySlug(slug);
+      const response = await linksApi.getBySlug(slug);
+      const data = response.data;
       setLink(data);
       
       // Initialiser les analytics si le consentement a déjà été donné
